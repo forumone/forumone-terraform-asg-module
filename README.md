@@ -1,3 +1,4 @@
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -41,14 +42,9 @@
 | <a name="input_alb_name"></a> [alb\_name](#input\_alb\_name) | n/a | `any` | n/a | yes |
 | <a name="input_ami"></a> [ami](#input\_ami) | n/a | `any` | n/a | yes |
 | <a name="input_client"></a> [client](#input\_client) | n/a | `any` | n/a | yes |
-| <a name="input_cpu_value"></a> [cpu\_value](#input\_cpu\_value) | n/a | `string` | `"60"` | no |
-| <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | n/a | `string` | `"150"` | no |
 | <a name="input_ec2_iam_profile"></a> [ec2\_iam\_profile](#input\_ec2\_iam\_profile) | n/a | `any` | n/a | yes |
 | <a name="input_environments"></a> [environments](#input\_environments) | n/a | `list(string)` | n/a | yes |
 | <a name="input_group"></a> [group](#input\_group) | n/a | `any` | n/a | yes |
-| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | `"t3a.medium"` | no |
-| <a name="input_max_size"></a> [max\_size](#input\_max\_size) | n/a | `string` | `"10"` | no |
-| <a name="input_min_size"></a> [min\_size](#input\_min\_size) | n/a | `string` | `"1"` | no |
 | <a name="input_ofs_bucket"></a> [ofs\_bucket](#input\_ofs\_bucket) | n/a | `any` | n/a | yes |
 | <a name="input_ofs_license"></a> [ofs\_license](#input\_ofs\_license) | n/a | `any` | n/a | yes |
 | <a name="input_ofs_passphrase"></a> [ofs\_passphrase](#input\_ofs\_passphrase) | n/a | `any` | n/a | yes |
@@ -60,7 +56,14 @@
 | <a name="input_sendgrid_api_key"></a> [sendgrid\_api\_key](#input\_sendgrid\_api\_key) | n/a | `any` | n/a | yes |
 | <a name="input_suffix"></a> [suffix](#input\_suffix) | n/a | `any` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `any` | n/a | yes |
+| <a name="input_cpu_value"></a> [cpu\_value](#input\_cpu\_value) | n/a | `string` | `"60"` | no |
+| <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | n/a | `string` | `"150"` | no |
+| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | `"t3a.medium"` | no |
+| <a name="input_max_size"></a> [max\_size](#input\_max\_size) | n/a | `string` | `"10"` | no |
+| <a name="input_min_size"></a> [min\_size](#input\_min\_size) | n/a | `string` | `"1"` | no |
+| <a name="input_salt_master"></a> [salt\_master](#input\_salt\_master) | n/a | `string` | `"salt"` | no |
 
 ## Outputs
 
 No outputs.
+<!-- END_TF_DOCS -->

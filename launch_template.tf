@@ -60,6 +60,9 @@ locals {
         permissions: "0400"
         owner: "root"
     # Salt Minion
+      - path: "/etc/salt/minion.d/master.conf"
+        content: |
+          master: ${var.salt_master}
       - path: "/etc/salt/minion.d/grains.conf"
         content: |
           grains:

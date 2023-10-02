@@ -27,3 +27,4 @@ variable "group" {}
 variable "sendgrid_api_key" {}
 variable "pillar_file" {}
 variable "ofs_bucket" {}
+variable "salt_master" { default = "salt" }
