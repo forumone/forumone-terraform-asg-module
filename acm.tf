@@ -7,7 +7,7 @@ module "sites_acm" {
   version                   = "~> 4.3"
   domain_name               = local.acm_chunks[count.index][0]
   zone_id                   = data.aws_route53_zone.public.zone_id
-  validate_certificate      = true
+  validation_method         = "DNS"
   subject_alternative_names = slice(local.acm_chunks[count.index], 1, length(local.acm_chunks[count.index]))
 }
 
