@@ -1,6 +1,6 @@
 resource "aws_autoscaling_group" "asg" {
   health_check_grace_period = 5
-  max_instance_lifetime     = 604800
+  max_instance_lifetime     = var.instance_lifetime
   default_cooldown          = 900
   health_check_type         = "EC2"
   max_size                  = var.max_size

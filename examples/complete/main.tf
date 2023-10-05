@@ -14,7 +14,7 @@ module "group_1" {
   ofs_bucket       = ""
   ofs_license      = ""
   ofs_passphrase   = ""
-  pillar_file      = ""
+  yaml_file        = ""
   private_subnets  = ""
   project          = ""
   salt_master      = "salt"

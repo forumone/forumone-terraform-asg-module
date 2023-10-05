@@ -25,6 +25,7 @@ variable "vpc_id" {}
 variable "suffix" {}
 variable "group" {}
 variable "sendgrid_api_key" {}
-variable "pillar_file" {}
+variable "yaml_file" {}
 variable "ofs_bucket" {}
 variable "salt_master" { default = "salt" }
+variable "instance_lifetime" { default = "1209600" }

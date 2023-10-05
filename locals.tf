@@ -1,6 +1,6 @@
 locals {
   # pull in pillar data from pillar file
-  pillar_data = yamldecode(file("../saltstack/pillar/${var.pillar_file}"))
+  pillar_data = yamldecode(file("${var.yaml_file}"))
   php_hosts   = try(local.pillar_data.vhosts.sites, {})
   node_hosts  = try(local.pillar_data.node.sites, {})
   suffix      = "${var.project}.${var.suffix}"
