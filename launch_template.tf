@@ -3,7 +3,7 @@ resource "aws_launch_template" "lt" {
   image_id               = var.ami
   instance_type          = var.instance_type
   vpc_security_group_ids = var.security_groups
-  user_data              = try(base64encode(var.launch_template_file), base64encode(local.cloud_init))
+  user_data              = try(base64encode(file("${var.launch_template_file}")), base64encode(local.cloud_init))
   iam_instance_profile {
     name = var.ec2_iam_profile
   }
