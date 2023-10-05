@@ -3,9 +3,9 @@ data "aws_route53_zone" "public" {
 }
 
 resource "aws_route53_record" "host" {
-  for_each        = toset(local.all_env_urls)
+  count           = var.create_route53_records ? length(local.all_env_urls) : 0
   zone_id         = data.aws_route53_zone.public.zone_id
-  name            = each.value
+  name            = count.index
   type            = "A"
   allow_overwrite = true
   alias {

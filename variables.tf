@@ -35,3 +35,7 @@ variable "create_certificates" {
   type    = bool
   default = true
 }
+variable "create_route53_records" {
+  type    = bool
+  default = true
+}
