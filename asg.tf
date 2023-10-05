@@ -65,7 +65,7 @@ resource "aws_autoscaling_group" "asg" {
     for_each = toset(var.salt_roles)
     content {
       key                 = "Role"
-      value               = each.value
+      value               = tag.value
       propagate_at_launch = true
     }
   }
