@@ -67,7 +67,9 @@ locals {
         content: |
           grains:
             roles:
-              - ${var.salt_role}
+          %{~for role in var.salt_roles~}
+              - ${role}
+          %{~endfor~}
             env:
           %{~for env in var.environments~}
               - ${env}

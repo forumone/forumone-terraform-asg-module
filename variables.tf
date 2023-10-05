@@ -10,7 +10,9 @@ variable "environments" {
 variable "private_subnets" {
   type = list(string)
 }
-variable "salt_role" {}
+variable "salt_roles" {
+  type = list(string)
+}
 variable "cpu_value" { default = "60" }
 variable "ami" {}
 variable "instance_type" { default = "t3a.medium" }

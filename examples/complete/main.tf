@@ -18,7 +18,7 @@ module "group_1" {
   private_subnets  = ""
   project          = ""
   salt_master      = "salt"
-  salt_role        = ""
+  salt_roles       = ""
   security_groups  = ""
   sendgrid_api_key = ""
   suffix           = ""
