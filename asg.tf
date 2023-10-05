@@ -60,11 +60,16 @@ resource "aws_autoscaling_group" "asg" {
     value               = "${var.project}-${var.group}"
     propagate_at_launch = true
   }
-  tag {
-    key                 = "Role"
-    value               = var.salt_role
-    propagate_at_launch = true
+
+  dynamic "tag" {
+    for_each = var.salt_roles
+    content {
+      key                 = "Role"
+      value               = tag.value
+      propagate_at_launch = true
+    }
   }
+
 }
 
 resource "aws_autoscaling_policy" "asg_policy" {
