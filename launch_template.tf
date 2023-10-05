@@ -1,5 +1,5 @@
 resource "aws_launch_template" "lt" {
-  name_prefix            = "${var.group}-${var.project}-"
+  name_prefix            = "${var.group}-"
   image_id               = var.ami
   instance_type          = var.instance_type
   vpc_security_group_ids = var.security_groups
