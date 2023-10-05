@@ -31,3 +31,7 @@ variable "yaml_file" {}
 variable "ofs_bucket" {}
 variable "salt_master" { default = "salt" }
 variable "instance_lifetime" { default = "1209600" }
+variable "create_certificates" {
+  type    = bool
+  default = true
+}

@@ -2,7 +2,7 @@ locals {
   acm_chunks = chunklist(local.all_env_urls, 10)
 }
 module "sites_acm" {
-  count                     = length(local.acm_chunks)
+  count                     = var.create_certificates ? length(local.acm_chunks) : 0
   source                    = "terraform-aws-modules/acm/aws"
   version                   = "~> 4.3"
   domain_name               = local.acm_chunks[count.index][0]
@@ -12,7 +12,7 @@ module "sites_acm" {
 }
 
 resource "aws_lb_listener_certificate" "acm" {
-  count           = length(local.acm_chunks)
+  count           = var.create_certificates ? length(local.acm_chunks) : 0
   listener_arn    = data.aws_lb_listener.https.arn
   certificate_arn = module.sites_acm[count.index].acm_certificate_arn
 }
