@@ -5,7 +5,7 @@ resource "aws_autoscaling_group" "asg" {
   health_check_type         = "EC2"
   max_size                  = var.max_size
   min_size                  = var.min_size
-  name                      = var.group
+  name                      = var.group_name
   placement_group           = aws_placement_group.pg.name
   vpc_zone_identifier       = var.private_subnets
   termination_policies      = ["Default"]
@@ -57,7 +57,7 @@ resource "aws_autoscaling_group" "asg" {
 
   tag {
     key                 = "Name"
-    value               = var.group
+    value               = var.group_name
     propagate_at_launch = true
   }
 
@@ -73,7 +73,7 @@ resource "aws_autoscaling_group" "asg" {
 }
 
 resource "aws_autoscaling_policy" "asg_policy" {
-  name                      = var.group
+  name                      = var.group_name
   policy_type               = "TargetTrackingScaling"
   estimated_instance_warmup = 120
   autoscaling_group_name    = aws_autoscaling_group.asg.name
@@ -85,7 +85,3 @@ resource "aws_autoscaling_policy" "asg_policy" {
     target_value = var.cpu_value
   }
 }
-
-
-
-

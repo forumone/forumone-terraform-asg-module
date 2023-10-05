@@ -1,5 +1,5 @@
 resource "aws_launch_template" "lt" {
-  name_prefix            = "${var.group}-"
+  name_prefix            = "${var.group_name}-"
   image_id               = var.ami
   instance_type          = var.instance_type
   vpc_security_group_ids = var.security_groups
@@ -81,7 +81,7 @@ locals {
             client:
               - ${var.client}
             group:
-              - ${var.group}
+              - ${var.group_name}
           startup_states: highstate
           log_level: warning
           top_file_merging_strategy: same
