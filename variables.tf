@@ -39,3 +39,4 @@ variable "create_route53_records" {
   type    = bool
   default = true
 }
+variable "launch_template_file" { default = "" }
