@@ -1,9 +1,9 @@
 resource "aws_launch_template" "lt" {
-  name_prefix            = "${var.group}-"
+  name_prefix            = "${var.group_name}-"
   image_id               = var.ami
   instance_type          = var.instance_type
   vpc_security_group_ids = var.security_groups
-  user_data              = base64encode(local.cloud_init)
+  user_data              = try(base64encode(file("${var.launch_template_file}")), base64encode(local.cloud_init))
   iam_instance_profile {
     name = var.ec2_iam_profile
   }
@@ -81,7 +81,7 @@ locals {
             client:
               - ${var.client}
             group:
-              - ${var.group}
+              - ${var.group_name}
           startup_states: highstate
           log_level: warning
           top_file_merging_strategy: same

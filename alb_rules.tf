@@ -14,6 +14,6 @@ resource "aws_lb_listener_rule" "lb_routes" {
     }
   }
   tags = {
-    Name = "${var.group}-${count.index}"
+    Name = "${var.group_name}-${count.index}"
   }
 }

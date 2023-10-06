@@ -5,13 +5,13 @@ resource "aws_autoscaling_attachment" "attachment" {
 
 # Add instances to a placmenet group with the spread option so they are across different hardware tenants
 resource "aws_placement_group" "pg" {
-  name         = var.group
+  name         = var.group_name
   strategy     = "spread"
   spread_level = "rack"
 }
 
 resource "aws_lb_target_group" "tg" {
-  name       = var.group
+  name       = var.group_name
   port       = 80
   protocol   = "HTTP"
   vpc_id     = var.vpc_id

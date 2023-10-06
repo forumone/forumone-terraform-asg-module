@@ -1,4 +1,3 @@
-
 variable "alb_name" {}
 variable "max_size" { default = "10" }
 variable "min_size" { default = "1" }
@@ -25,9 +24,18 @@ variable "ofs_license" {}
 variable "ofs_passphrase" {}
 variable "vpc_id" {}
 variable "suffix" {}
-variable "group" {}
+variable "group_name" {}
 variable "sendgrid_api_key" {}
 variable "yaml_file" {}
 variable "ofs_bucket" {}
 variable "salt_master" { default = "salt" }
 variable "instance_lifetime" { default = "1209600" }
+variable "create_certificates" {
+  type    = bool
+  default = true
+}
+variable "create_route53_records" {
+  type    = bool
+  default = true
+}
+variable "launch_template_file" { default = "" }
