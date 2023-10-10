@@ -22,7 +22,7 @@ data "aws_route53_zone" "public" {
 # This will create an aname alias for each site and point it
 # To the ALB
 resource "aws_route53_record" "host" {
-  for_each        = tolist(local.route53_records)
+  for_each        = toset(local.route53_records)
   zone_id         = data.aws_route53_zone.public.zone_id
   name            = each.value
   type            = "A"
