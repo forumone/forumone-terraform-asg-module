@@ -1,0 +1,25 @@
+vhosts:
+    php_site:
+      instances:
+        dev: []
+        stage:
+          urls:
+            - stage.alternate_urls.com
+        www:
+          create_ssl: false
+          create_route53: false
+          urls:
+            - www..alternate_urls.com
+node:
+  sites:
+    nextjs_site:
+      instances:
+        dev: []
+        stage:
+          urls:
+            - stage.alternate_urls.com
+        www:
+          create_ssl: false
+          create_route53: false
+          urls:
+            - www..alternate_urls.com

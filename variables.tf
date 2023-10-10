@@ -26,7 +26,9 @@ variable "vpc_id" {}
 variable "suffix" {}
 variable "group_name" {}
 variable "sendgrid_api_key" {}
-variable "yaml_file" {}
+variable "yaml_files" {
+  type = list(string)
+}
 variable "ofs_bucket" {}
 variable "salt_master" { default = "salt" }
 variable "instance_lifetime" { default = "1209600" }
@@ -39,3 +41,9 @@ variable "create_route53_records" {
   default = true
 }
 variable "launch_template_file" { default = "" }
+variable "automate_instance_refresh" {
+  type    = bool
+  default = false
+}
+variable "warmup" { default = "120" }
+variable "cooldown" { default = "900" }
