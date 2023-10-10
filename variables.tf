@@ -20,12 +20,13 @@ variable "security_groups" {
 }
 variable "ec2_iam_profile" {}
 variable "ebs_volume_size" { default = "150" }
-variable "ofs_license" {}
-variable "ofs_passphrase" {}
+variable "ofs_license" { default = "" }
+variable "ofs_passphrase" { default = "" }
+variable "ofs_cache_size" { default = "100G" }
 variable "vpc_id" {}
 variable "suffix" {}
 variable "group_name" {}
-variable "sendgrid_api_key" {}
+variable "sendgrid_api_key" { default = "" }
 variable "yaml_files" {
   type = list(string)
 }
