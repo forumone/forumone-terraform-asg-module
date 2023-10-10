@@ -8,9 +8,9 @@ locals {
       for name, site in local.mapped_sites : [
         "${env}.${site.name}.${var.suffix}"
       ]
-      if site.env == env && site.create_route53 != "false"
+      if site.env == env && site.create_route53 != false
     ]
-    if var.create_route53_records != "false"
+    if var.create_route53_records != false
   ]))
 }
 

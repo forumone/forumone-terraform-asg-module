@@ -7,8 +7,10 @@ locals {
       for name, site in local.mapped_sites : [
         "${env}.${site.name}.${var.suffix}"
       ]
-      if site.env == env && site.create_ssl != "false"
-  ]]))
+      if site.env == env && site.create_ssl != false
+    ]
+    if var.create_certificates != false
+  ]))
   # divide list into chunks because of ACM limits.
   acm_chunks = chunklist(local.ssl_certs, 10)
 }

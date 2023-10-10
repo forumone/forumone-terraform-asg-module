@@ -9,8 +9,8 @@ locals {
           name           = name
           env            = env
           url            = try(instance.urls, null)
-          create_ssl     = try(instance.create_ssl, null)
-          create_route53 = try(instance.create_route53, null)
+          create_ssl     = try(instance.create_ssl, true)
+          create_route53 = try(instance.create_route53, true)
         }
       ]
     ]
@@ -22,8 +22,8 @@ locals {
           name           = name
           env            = env
           url            = try(instance.urls, null)
-          create_ssl     = try(instance.create_ssl, null)
-          create_route53 = try(instance.create_route53, null)
+          create_ssl     = try(instance.create_ssl, true)
+          create_route53 = try(instance.create_route53, true)
         }
       ]
     ]
