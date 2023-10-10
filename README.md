@@ -1,3 +1,10 @@
+# AWS Auto Scaling Group (ASG) Terraform module - For use with Salt Stack
+  - This module sets the defaults for ASG to connect to a salt-stack configuration management host.
+  - The module will use the data from the salt-stack pillar files or properly formatted yaml files to create resources.
+  - This will create an: ASG, Launch Templates, target groups and ALB Routes for each URL
+  - It will also conditionally create Route 53 Records and SSL Certificates with ACM
+  - see examples folder for yaml structure and module inputs
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -55,7 +62,8 @@
 | <a name="input_sendgrid_api_key"></a> [sendgrid\_api\_key](#input\_sendgrid\_api\_key) | n/a | `any` | n/a | yes |
 | <a name="input_suffix"></a> [suffix](#input\_suffix) | n/a | `any` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `any` | n/a | yes |
-| <a name="input_yaml_file"></a> [yaml\_file](#input\_yaml\_file) | n/a | `any` | n/a | yes |
+| <a name="input_yaml_files"></a> [yaml\_files](#input\_yaml\_files) | n/a | `list(string)` | n/a | yes |
+| <a name="input_automate_instance_refresh"></a> [automate\_instance\_refresh](#input\_automate\_instance\_refresh) | n/a | `bool` | `false` | no |
 | <a name="input_cpu_value"></a> [cpu\_value](#input\_cpu\_value) | n/a | `string` | `"60"` | no |
 | <a name="input_create_certificates"></a> [create\_certificates](#input\_create\_certificates) | n/a | `bool` | `true` | no |
 | <a name="input_create_route53_records"></a> [create\_route53\_records](#input\_create\_route53\_records) | n/a | `bool` | `true` | no |

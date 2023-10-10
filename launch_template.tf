@@ -32,6 +32,8 @@ resource "aws_launch_template" "lt" {
 
 }
 
+# default launch template for salt backed ASG's
+
 locals {
   cloud_init = <<EOF
     #cloud-config

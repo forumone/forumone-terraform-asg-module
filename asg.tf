@@ -1,7 +1,7 @@
 resource "aws_autoscaling_group" "asg" {
   health_check_grace_period = 5
   max_instance_lifetime     = var.instance_lifetime
-  default_cooldown          = 900
+  default_cooldown          = var.cooldown
   health_check_type         = "EC2"
   max_size                  = var.max_size
   min_size                  = var.min_size
@@ -9,7 +9,6 @@ resource "aws_autoscaling_group" "asg" {
   placement_group           = aws_placement_group.pg.name
   vpc_zone_identifier       = var.private_subnets
   termination_policies      = ["Default"]
-  force_delete              = false
   target_group_arns         = [aws_lb_target_group.tg.arn]
   enabled_metrics = [
     "GroupDesiredCapacity",
@@ -34,13 +33,7 @@ resource "aws_autoscaling_group" "asg" {
   lifecycle {
     create_before_destroy = true
   }
-  instance_refresh {
-    strategy = "Rolling"
-    preferences {
-      min_healthy_percentage = 50
-    }
-    triggers = ["tag"]
-  }
+
   initial_lifecycle_hook {
     name                 = "LAUNCHING"
     default_result       = "CONTINUE"
@@ -53,6 +46,23 @@ resource "aws_autoscaling_group" "asg" {
     default_result       = "CONTINUE"
     heartbeat_timeout    = 600
     lifecycle_transition = "autoscaling:EC2_INSTANCE_TERMINATING"
+  }
+
+  # This will enable automatic instance refresh if the automate_instance_refresh variable
+  # is set to to true which will update instances when the launch tempalte is changed
+  # defaults to false
+  dynamic "instance_refresh" {
+    for_each = var.automate_instance_refresh ? [1] : [0]
+    content {
+      strategy = "Rolling"
+      preferences {
+        checkpoint_delay       = 600
+        checkpoint_percentages = [35, 70, 100]
+        instance_warmup        = 300
+        min_healthy_percentage = 50
+        auto_rollback          = true
+      }
+    }
   }
 
   tag {
@@ -69,13 +79,12 @@ resource "aws_autoscaling_group" "asg" {
       propagate_at_launch = true
     }
   }
-
 }
 
 resource "aws_autoscaling_policy" "asg_policy" {
   name                      = var.group_name
   policy_type               = "TargetTrackingScaling"
-  estimated_instance_warmup = 120
+  estimated_instance_warmup = var.warmup
   autoscaling_group_name    = aws_autoscaling_group.asg.name
   adjustment_type           = "ChangeInCapacity"
   target_tracking_configuration {
@@ -85,3 +94,6 @@ resource "aws_autoscaling_policy" "asg_policy" {
     target_value = var.cpu_value
   }
 }
+
+
+
