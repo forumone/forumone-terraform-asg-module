@@ -49,7 +49,7 @@ resource "aws_autoscaling_group" "asg" {
   }
 
   # This will enable automatic instance refresh if the automate_instance_refresh variable
-  # is set to to true which will update instances when the launch tempalte is changed
+  # is set to to true which will update instances when the launch template is changed
   # defaults to false
   dynamic "instance_refresh" {
     for_each = var.automate_instance_refresh != false ? [1] : []
