@@ -52,7 +52,7 @@ resource "aws_autoscaling_group" "asg" {
   # is set to to true which will update instances when the launch tempalte is changed
   # defaults to false
   dynamic "instance_refresh" {
-    for_each = var.automate_instance_refresh ? [1] : [0]
+    for_each = var.automate_instance_refresh != false ? [1] : []
     content {
       strategy = "Rolling"
       preferences {
