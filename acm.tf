@@ -9,7 +9,7 @@ locals {
       ]
       if site.env == env && site.create_ssl != false
     ]
-    if var.create_certificates != false
+    if var.create_ssl_certificates != false
   ]))
   # divide list into chunks because of ACM limits.
   acm_chunks = chunklist(local.ssl_certs, 10)
