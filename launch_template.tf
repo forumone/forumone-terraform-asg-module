@@ -102,7 +102,7 @@ locals {
       - mkdir -p /var/cache/ofs
       - mkdir -p /var/www
       - |
-        echo "s3://${var.ofs_bucket}/www /var/www objectivefs _netdev,acl,auto,mboost,mt,nonempty 0 0" >> /etc/fstab
+        echo "s3://${var.ofs_bucket} /var/www objectivefs _netdev,acl,auto,mboost,mt,nonempty 0 0" >> /etc/fstab
       - mount -a
       - systemctl --now enable salt-minion.service
   EOF
