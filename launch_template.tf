@@ -65,9 +65,14 @@ locals {
         owner: "root"
     # Salt Minion
       - path: "/etc/salt/minion.d/master.conf"
+        permissions: "0400"
+        owner: "root"
         content: |
           master: ${var.salt_master}
+    # Salt Grains Config
       - path: "/etc/salt/minion.d/grains.conf"
+        permissions: "0400"
+        owner: "root"
         content: |
           grains:
             roles:
@@ -89,9 +94,10 @@ locals {
           startup_states: highstate
           log_level: warning
           top_file_merging_strategy: same
+    # Salt Minion Environment
+      - path: "/etc/salt/minion.d/environment.conf"
         permissions: "0400"
         owner: "root"
-      - path: "/etc/salt/minion.d/environemnt.conf"
         content: |
           environment: ${var.salt_environment}
     # Postfix Sendgrid Relay
@@ -100,6 +106,7 @@ locals {
         owner: "root:root"
         content: |
           [smtp.sendgrid.net]:587 apikey:${var.sendgrid_api_key}
+    # Shell Commands
     runcmd:
       - echo "id:" $(/bin/jq -r .v1.instance_id /var/run/cloud-init/instance-data.json) >> /etc/salt/minion.d/id.conf
       - mkdir -p /var/cache/ofs
