@@ -91,6 +91,9 @@ locals {
           top_file_merging_strategy: same
         permissions: "0400"
         owner: "root"
+      - path: "/etc/salt/minion.d/environemnt.conf"
+        content: |
+          environment: ${var.salt_environment}
     # Postfix Sendgrid Relay
       - path: "/etc/postfix/sasl_passwd"
         permissions: 0600

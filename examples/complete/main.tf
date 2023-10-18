@@ -1,12 +1,13 @@
 module "group_1" {
-  source                    = "github.com/forumone/forumone-terraform-asg-module.git?ref=v1.0.1"
+  source                    = "github.com/forumone/forumone-terraform-asg-module.git?ref=v1.0.2"
   alb_name                  = ""
   ami                       = ""
   automate_instance_refresh = false
   client                    = ""
+  cooldown                  = "900"
   cpu_value                 = "60"
-  create_certificates       = true
   create_route53_records    = true
+  create_ssl_certificates   = true
   ebs_volume_size           = "150"
   ec2_iam_profile           = ""
   environments              = ""
@@ -17,15 +18,18 @@ module "group_1" {
   max_size                  = "10"
   min_size                  = "1"
   ofs_bucket                = ""
+  ofs_cache_size            = "100G"
   ofs_license               = ""
   ofs_passphrase            = ""
   private_subnets           = ""
   project                   = ""
+  salt_environment          = "base"
   salt_master               = "salt"
   salt_roles                = ""
   security_groups           = ""
   sendgrid_api_key          = ""
   suffix                    = ""
   vpc_id                    = ""
+  warmup                    = "120"
   yaml_files                = ""
 }
