@@ -48,6 +48,11 @@ resource "aws_autoscaling_group" "asg" {
     lifecycle_transition = "autoscaling:EC2_INSTANCE_TERMINATING"
   }
 
+  instance_maintenance_policy {
+    min_healthy_percentage = 90
+    max_healthy_percentage = 120
+  }
+
   # This will enable automatic instance refresh if the automate_instance_refresh variable
   # is set to to true which will update instances when the launch template is changed
   # defaults to false
